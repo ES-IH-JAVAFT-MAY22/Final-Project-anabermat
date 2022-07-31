@@ -1,0 +1,11 @@
+<div class="title">
+    <button type="button" mat-raised-button color="primary" (click)="back()">Back</button>
+    <div *ngFor="let book of books">
+        <ul>
+            <li>
+                {{book.title}} - {{book.writer}}
+                <button type="button" mat-raised-button color="primary" (click)="retrieveBook()">Select</button>
+            </li>
+        </ul>
+    </div>
+</div>

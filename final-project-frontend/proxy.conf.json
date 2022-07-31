@@ -1,0 +1,12 @@
+{
+    "/books/*":{
+        "target":"http://localhost:8081",
+        "secure":false,
+        "logLevel":"debug"
+    },
+    "/users/*":{
+        "target":"http://localhost:8082",
+        "secure":false,
+        "logLevel":"debug"
+    }
+}

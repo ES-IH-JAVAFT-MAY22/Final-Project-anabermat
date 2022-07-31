@@ -1,0 +1,56 @@
+<div class="container">
+
+    <button type="button" mat-raised-button color="primary" (click)="retrieveBooks()">Retrieve Books</button>
+    <div>
+        Your total balance is: {{user.balance}}
+    </div>
+    <form (ngSubmit)="onSubmit()">
+        <mat-card class="card">
+        <form (ngSubmit)="onSubmit()" [formGroup]="registerForm">
+
+            <mat-card-header>
+                <mat-card-title>Searcher</mat-card-title>
+            </mat-card-header>
+
+            <mat-card-content>
+
+                <div class="searcher-container"> 
+                    <div class="searcher-fields">
+
+                        <mat-form-field class="full-width" appearance="fill">
+                            <mat-label>Title</mat-label>
+                            <input type="text" matInput formControlName="title" placeholder="Title">
+                            <mat-error *ngIf="titleInput.hasError('required') && titleInput.touched">
+                              A title is <strong>required</strong>
+                            </mat-error>
+                          </mat-form-field>
+
+                          <mat-form-field class="full-width" appearance="fill">
+                            <mat-label>Number of pages</mat-label>
+                            <input type="number" matInput formControlName="numberOfPages" placeholder="Number of pages">
+                            <mat-error class="error-msg" *ngIf="numberOfPagesInput.hasError('required') && numberOfPagesInput.touched">
+                                The number of pages is <strong>required</strong>
+                              </mat-error>
+                              <mat-error class="error-msg" *ngIf="numberOfPagesInput.hasError('min') && numberOfPagesInput.touched">
+                                  The number of pages has to be <strong>larger</strong> than 10
+                                </mat-error>
+                          </mat-form-field>
+
+
+                          <mat-form-field class="full-width" appearance="fill">
+                            <mat-label>Writer</mat-label>
+                            <input type="text" matInput formControlName="writer" placeholder="Writer">
+                            <mat-error class="error-msg" *ngIf="writerInput.hasError('required') && writerInput.touched">
+                                Writer is <strong>required</strong>
+                            </mat-error>
+                          </mat-form-field>
+        
+                <button type="submit" mat-raised-button color="primary" >Submit</button>
+
+                    </div>
+                </div>
+            </mat-card-content>
+        </form>
+        </mat-card>
+    </form>
+</div>

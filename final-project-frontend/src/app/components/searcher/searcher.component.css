@@ -1,0 +1,8 @@
+.searcher-container {
+    display: flex;
+    justify-content: space-around;
+}
+
+.full-width {
+    width: 100%;
+}

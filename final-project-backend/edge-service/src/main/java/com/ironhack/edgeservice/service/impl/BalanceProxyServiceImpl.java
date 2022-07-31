@@ -38,4 +38,14 @@ public class BalanceProxyServiceImpl implements BalanceProxyService {
     public List<Book> getBookList(long id) {
         return balanceProxyClient.getBookList(id);
     }
+
+    @Override
+    public User smallerBalance(long id, Book book) {
+        return balanceProxyClient.smallerBalance(id, book);
+    }
+
+    @Override
+    public List<Book> addToBookList(Book book, long id) {
+        return balanceProxyClient.addToBookList(book,id);
+    }
 }

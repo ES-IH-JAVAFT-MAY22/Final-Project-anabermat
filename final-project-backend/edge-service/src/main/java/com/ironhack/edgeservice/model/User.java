@@ -1,6 +1,8 @@
 package com.ironhack.edgeservice.model;
 
 
+import java.util.List;
+
 public class User {
 
     private long id;
@@ -11,14 +13,23 @@ public class User {
 
     private int balance;
 
-    private Book book;
+    public List<Book> getBookList() {
+        return bookList;
+    }
+
+    public void setBookList(List<Book> bookList) {
+        this.bookList = bookList;
+    }
+
+    private List<Book> bookList;
 
     public User() {
     }
 
-    public User(String username, String password, int balance) {
+
+
+    public User(String username, int balance) {
         this.username = username;
-        this.password = password;
         this.balance = balance;
     }
 

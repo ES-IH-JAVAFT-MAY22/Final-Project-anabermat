@@ -68,19 +68,6 @@ class BookControllerImplTest {
         assertFalse(mvcResult.getResponse().getContentAsString().contains("Charly"));
     }
 
-    // como testear el delete si es void
-    @Test
-    void deleteBook() throws Exception {
-        MvcResult mvcResult = (MvcResult) mockMvc.perform(delete("/books/1")
-                        .contentType(MediaType.APPLICATION_JSON))
-                .andExpect(status().isNoContent())
-                .andExpect(content().contentType(MediaType.APPLICATION_JSON));
-
-        assertTrue(mvcResult.getResponse().getContentAsString().contains("Harry Potter"));
-        assertFalse(mvcResult.getResponse().getContentAsString().contains("Charly"));
-    }
-
-
     @Test
     void getBook() throws Exception{
         MvcResult mvcResult = (MvcResult) mockMvc.perform(get("/books/1")
@@ -92,4 +79,17 @@ class BookControllerImplTest {
         assertTrue(mvcResult.getResponse().getContentAsString().contains("Harry Potter"));
         assertFalse(mvcResult.getResponse().getContentAsString().contains("Charly"));
     }
+
+    @Test
+    void findAvailableBooks() throws Exception{
+        MvcResult mvcResult = (MvcResult) mockMvc.perform(get("/books")
+                        .contentType(MediaType.APPLICATION_JSON))
+                .andExpect(status().isOk())
+                .andExpect(content().contentType(MediaType.APPLICATION_JSON))
+                .andReturn();
+
+        assertTrue(mvcResult.getResponse().getContentAsString().contains("Harry Potter"));
+        assertFalse(mvcResult.getResponse().getContentAsString().contains("Alice"));
+    }
+
 }

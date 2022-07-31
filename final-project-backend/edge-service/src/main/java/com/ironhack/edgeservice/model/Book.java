@@ -1,7 +1,7 @@
 package com.ironhack.edgeservice.model;
 
 
-import com.ironhack.edgeservice.enums.Genre;
+
 
 
 public class Book {
@@ -10,16 +10,14 @@ public class Book {
     private long id;
     private String title;
     private int numberOfPages;
-    private Genre genre;
     private String writer;
 
     public Book() {
     }
 
-    public Book(String title, int numberOfPages, Genre genre, String writer) {
+    public Book(String title, int numberOfPages, String writer) {
         this.title = title;
         this.numberOfPages = numberOfPages;
-        this.genre = genre;
         this.writer = writer;
     }
 
@@ -47,13 +45,6 @@ public class Book {
         this.numberOfPages = numberOfPages;
     }
 
-    public Genre getGenre() {
-        return genre;
-    }
-
-    public void setGenre(Genre genre) {
-        this.genre = genre;
-    }
 
     public String getWriter() {
         return writer;

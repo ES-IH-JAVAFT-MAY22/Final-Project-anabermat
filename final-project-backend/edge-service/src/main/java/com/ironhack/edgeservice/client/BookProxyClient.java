@@ -6,6 +6,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Component;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
 import java.util.Optional;
 
 
@@ -20,4 +21,7 @@ public interface BookProxyClient {
 
     @GetMapping("/books/{id}")
     public Optional<Book> getBook(@PathVariable long id);
+
+    @GetMapping("/books")
+    public List<Book> findAvailableBooks();
 }

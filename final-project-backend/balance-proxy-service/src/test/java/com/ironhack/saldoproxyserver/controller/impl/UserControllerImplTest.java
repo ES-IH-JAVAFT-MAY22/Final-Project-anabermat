@@ -17,6 +17,7 @@ import org.springframework.test.web.servlet.MvcResult;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import org.springframework.web.context.WebApplicationContext;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -41,10 +42,18 @@ class UserControllerImplTest {
 
     private User user1, user2;
 
+    private Book book1;
+
+    private List<Book> bookList1;
+
     @BeforeEach
     void setUp() {
         mockMvc = MockMvcBuilders.webAppContextSetup(webApplicationContext).build();
         user1 = new User("Pepito",10);
+        book1 = new Book("Alice in Wonderland",250,"Lewis Carroll");
+        bookList1 = new ArrayList<>();
+        bookList1.add(book1);
+        user1.setBookList(bookList1);
         user2 = new User("Jaime", 50);
         userRepository.saveAll(List.of(user1, user2));
     }
@@ -69,9 +78,6 @@ class UserControllerImplTest {
         assertFalse(mvcResult.getResponse().getContentAsString().contains("Pepito"));
     }
 
-    @Test
-    void deleteUser() {
-    }
 
     @Test
     void getUser() throws Exception {
@@ -90,7 +96,7 @@ class UserControllerImplTest {
 
         Book book = new Book("Harry Potter",550, "JK Rowling");
         String body = objectMapper.writeValueAsString(book);
-        MvcResult mvcResult = (MvcResult) mockMvc.perform(put("/users/1")
+        MvcResult mvcResult = (MvcResult) mockMvc.perform(put("/users/up/1")
                         .content(body)
                         .contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk())
@@ -101,4 +107,39 @@ class UserControllerImplTest {
         assertFalse(mvcResult.getResponse().getContentAsString().contains("115"));
 
     }
+
+    @Test
+    void smallerBalance() throws Exception {
+        Book book = new Book("Harry Potter",20, "JK Rowling");
+        String body = objectMapper.writeValueAsString(book);
+        MvcResult mvcResult = (MvcResult) mockMvc.perform(put("/users/down/1")
+                        .content(body)
+                        .contentType(MediaType.APPLICATION_JSON))
+                .andExpect(status().isOk())
+                .andExpect(content().contentType(MediaType.APPLICATION_JSON))
+                .andReturn();
+
+        assertTrue(mvcResult.getResponse().getContentAsString().contains("0"));
+        assertFalse(mvcResult.getResponse().getContentAsString().contains("20"));
+
+    }
+
+
+    @Test
+    void addToBookList() throws Exception {
+        Book book = new Book("Alice in Wonderland",250,"Lewis Carroll");
+        String body = objectMapper.writeValueAsString(book);
+        MvcResult mvcResult = (MvcResult) mockMvc.perform(post("/users/bookList/1")
+                        .content(body)
+                        .contentType(MediaType.APPLICATION_JSON))
+                .andExpect(status().isCreated())
+                .andExpect(content().contentType(MediaType.APPLICATION_JSON))
+                .andReturn();
+
+        assertTrue(mvcResult.getResponse().getContentAsString().contains("Alice"));
+        assertFalse(mvcResult.getResponse().getContentAsString().contains("Pepito"));
+    }
+
+
+
 }

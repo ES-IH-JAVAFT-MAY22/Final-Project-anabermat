@@ -19,7 +19,7 @@ public interface BalanceProxyClient {
     @GetMapping("/users/{id}")
     User getUser(@PathVariable long id);
 
-    @PutMapping("/users/{id}")
+    @PutMapping("/users/up/{id}")
     @ResponseStatus(HttpStatus.OK)
     User updateBalance(@PathVariable long id, @RequestBody Book book);
 

@@ -16,16 +16,16 @@ export class BookService {
 
   addBook(book: Book): any {
     console.log(book);
-    return this.http.post<any>(`http://localhost:8081/books`, book);
+    return this.http.post<any>(`http://localhost:8080/books`, book);
   }
 
   deleteBook(id:number): any {
     console.log(id);
-    return this.http.delete<any>(`http://localhost:8081/books/${id}`);
+    return this.http.delete<any>(`http://localhost:8080/books/${id}`);
   }
 
   getAvailableBooks():any {
-    return this.http.get<any>(`http://localhost:8081/books`);
+    return this.http.get<any>(`http://localhost:8080/books`);
   }
   
 

@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-
+@CrossOrigin ("*")
 public class BalanceProxyClientImpl implements BalanceProxyClient {
 
     @Autowired
@@ -35,7 +35,7 @@ public class BalanceProxyClientImpl implements BalanceProxyClient {
         return balanceProxyService.getUser(id);
     }
 
-    @PutMapping("/users/{id}")
+    @PutMapping("/users/up/{id}")
     @ResponseStatus(HttpStatus.OK)
     public User updateBalance(@PathVariable long id, @RequestBody Book book) {
         return balanceProxyService.updateBalance(id,book);
@@ -45,5 +45,17 @@ public class BalanceProxyClientImpl implements BalanceProxyClient {
     @ResponseStatus(HttpStatus.OK)
     public List<Book> getBookList(@PathVariable long id) {
         return balanceProxyService.getBookList(id);
+    }
+
+    @PutMapping("/users/down/{id}")
+    @ResponseStatus(HttpStatus.OK)
+    public User smallerBalance(long id, Book book) {
+        return balanceProxyService.smallerBalance(id,book);
+    }
+
+    @PostMapping("/users/bookList/{id}")
+    @ResponseStatus(HttpStatus.CREATED)
+    public List<Book> addToBookList(Book book, long id) {
+        return balanceProxyService.addToBookList(book,id);
     }
 }

@@ -11,4 +11,6 @@ public interface BalanceProxyClient {
     User getUser(long id);
     User updateBalance(long id, Book book);
     List<Book> getBookList(long id);
+    User smallerBalance(long id, Book book);
+    List<Book> addToBookList(Book book, long id);
 }

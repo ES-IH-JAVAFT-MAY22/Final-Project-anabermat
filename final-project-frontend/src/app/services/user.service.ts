@@ -15,32 +15,32 @@ export class UserService {
 
   addUser(user: User): Observable<User> {
     console.log(user);
-    return this.http.post<any>(`http://localhost:8082/users`, user);
+    return this.http.post<any>(`http://localhost:8080/users`, user);
   }
 
   getUser(id:number): any{
     console.log(id);
-    return this.http.get<any>(`http://localhost:8082/users/${id}`);
+    return this.http.get<any>(`http://localhost:8080/users/${id}`);
   }
 
   addToBookList(book:Book,id:number): any {
     console.log(book,id);
-    return this.http.post<any>(`http://localhost:8082/users/bookList/${id}`, book);
+    return this.http.post<any>(`http://localhost:8080/users/bookList/${id}`, book);
   }
 
   getBookList(id:number): any{
     console.log(id);
-    return this.http.get<any>(`http://localhost:8082/users/bookList/${id}`);
+    return this.http.get<any>(`http://localhost:8080/users/bookList/${id}`);
   }
 
   moreBalance(id:number, book:Book): any{
     console.log(id,book);
-    return this.http.put<any>(`http://localhost:8082/users/up/${id}`,book);
+    return this.http.put<any>(`http://localhost:8080/users/up/${id}`,book);
 
   }
 
   lessBalance(id:number, book:Book): any{
     console.log(id,book);
-    this.http.put<any>(`http://localhost:8082/users/down/${id}`,book);
+    this.http.put<any>(`http://localhost:8080/users/down/${id}`,book);
   }
 }

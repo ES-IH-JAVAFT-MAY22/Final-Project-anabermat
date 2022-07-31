@@ -8,10 +8,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
 import java.util.Optional;
 
 @RestController
-
+@CrossOrigin ("*")
 public class BookProxyControllerImpl implements BookProxyController {
 
     @Autowired
@@ -33,5 +34,11 @@ public class BookProxyControllerImpl implements BookProxyController {
     @ResponseStatus(HttpStatus.OK)
     public Optional<Book> getBook(long id) {
         return bookProxyService.getBook(id);
+    }
+
+    @GetMapping("/books")
+    @ResponseStatus(HttpStatus.OK)
+    public List<Book> findAvailableBooks() {
+        return bookProxyService.findAvailableBooks();
     }
 }

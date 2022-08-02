@@ -17,9 +17,10 @@
 ##### The user and admin roles would be distinctible by using an authentification system
 
 ## How is the backend organized
-##### The backend consists of two proxy services joined by an edge service.
+##### The backend consists of two proxy services joined by an edge service. Each proxy service is connected to a different database.
+![Diagrama sin título drawio (1)](https://user-images.githubusercontent.com/106668319/182344330-acf4c6bc-8f04-4829-a057-b5403974dc91.png)
 
 
 ## Technologies used in the process
-##### Backend:
-##### Frontend:
+##### Backend: Java
+##### Frontend: Typescript, hml, css
